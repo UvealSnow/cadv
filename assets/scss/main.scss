@@ -1,0 +1,444 @@
+/**
+*
+*  Author: Kevin Avila (@UvealSnow),
+*  Enterprise: Nuva.Rocks,
+*  Created following guidelines from: 
+*  http://cssguidelin.es/#the-importance-of-a-styleguide and BEM
+*  naming conventions, build mobile first (320::568px).
+*  For: Centro de atencion y desarrollo visual, 
+*  Copyright: Nuva.Rocks 2016.
+*
+*/
+
+/**
+*
+*  Table of contents
+*  
+*  Imports
+*    variables.scss - Colors and other values are stored here
+*    reset.scss - Basic css reset for every webpage
+*    fonts.scss - Add the fonts for this webpage
+*
+*  Base
+*    Text and headers - Styles and modifications required for this style
+*    Form styling - Styles for the form inputs and buttons
+*    Google Maps styling - Just height, width and margins
+*
+*  Media queries
+*    media-queries.scss - All media queries for all resolutions
+*      for detailed information look at the TOC in that file
+*
+*/
+
+/*---------------------------------------------------------------------------*\
+  #Imports
+\*----------------------------------------------------------------------------*/
+
+@import 'imports/variables';
+@import 'imports/reset';
+@import 'imports/fonts';
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Base
+\*----------------------------------------------------------------------------*/
+
+.section {
+	width: 100%;
+	min-height: 100vh;
+	position: relative;
+}
+
+	.section--blue {
+		background-color: $blue;
+	}
+
+	.section__small {
+		@extend .section;
+		min-height: 0;
+		max-height: 580px;
+	}
+
+	.section__filter {
+		@extend .section;
+		background-color: rgba(0, 0, 0, .5);
+	}
+
+	.section__background {
+		position: relative;
+		top: -190px;
+		transform: translateX(-30%);
+		width: 800px;
+		height: 700px;
+		background-image: url('../img/svg/lentes.svg');
+		background-size: 100%;
+		opacity: .3;
+	}
+
+	.section__content--right {
+		position: absolute;
+		top: 200px;
+		right: 50px;
+		width: 600px;
+	}
+
+.navbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100px;
+	width: 100%;
+
+	* {
+		display: inline-block;
+		vertical-align: top;
+	} 
+
+	img {
+		height: 80px;
+		margin: 10px 30px;
+	}
+}
+	
+	.navbar__links {
+		position: absolute;
+		right: 0;
+		height: 20px;
+		margin: 40px 10px;
+		z-index: 99;
+
+		a {
+			color: $secondary-text;
+			font-weight: lighter;
+			margin: 0 10px;
+			padding: 3px 0;
+		}
+
+		a:hover {
+			color: #c3c3c3;
+			border-color: #c3c3c3;
+			transition: all .5s;
+		}
+
+		.active {
+			border-bottom: 1px solid;
+			border-color: $secondary-text;
+		}
+	}
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Main-view
+\*----------------------------------------------------------------------------*/
+
+	.lens {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+		
+		.lens__circle,
+		.lens__text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 500px;
+			height: 500px;
+		}
+
+		.lens__circle {
+			@extend #main-view;
+			animation: focus 10s infinite;
+			zoom: 95%;
+			border-radius: 250px;
+			z-index: 0;
+		}
+
+		.lens__text {
+			position: absolute;
+
+			h1 {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				color: $secondary-text;
+				font-size: 35px;
+				font-weight: lighter;
+				text-align: center;
+				text-shadow: -1px 0px 1px rgba(33, 33, 33, 1);
+			}
+		}
+
+		#main-view {
+			background: url('../img/main.png');
+			background-position: center;
+			background-size: auto auto;
+		}
+
+	// Animations
+
+		@keyframes focus {
+			0% { filter: blur(8px); }
+			50% { filter: blur(0px); }
+			100% { filter: blur(8px); }
+		}
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Sections
+\*----------------------------------------------------------------------------*/
+
+.underlined {
+	position: relative;
+	top: 40px;
+	max-width: 800px;
+	color: $secondary-text;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 10px 10px;
+	font-weight: bold;
+	border-bottom: 1px solid;
+	display: block;
+	margin: auto;
+}
+
+	.underlined--black {
+		@extend .underlined;
+		color: $main-text;
+		border-color: $main-text;
+	}
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Rows&Cols
+\*----------------------------------------------------------------------------*/
+
+.row {
+	width: 920px;
+	margin: 0 auto;
+	display: block;
+	text-align: justify;
+}
+
+	.row:first-of-type {
+		margin-top: 100px;
+	}
+
+	.row:last-of-type {
+		padding-bottom: 100px;
+	}
+
+.col {
+	border: 2px solid white;
+	border-radius: 5px;
+	display: inline-block;
+	vertical-align: top;
+	zoom: 1;
+}
+
+	.col--2 {
+		@extend .col;
+		width: 400px;	
+	}
+
+	.col--3 {
+		@extend .col;
+		width: 250px;
+		height: 250px;
+	}
+
+.stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Services
+\*----------------------------------------------------------------------------*/
+
+.service {
+	background-color: transparent;
+	color: white;
+
+	svg {
+		height: 150px;
+		width: 150px;
+		display: block;
+		margin: 20px auto;
+
+		path,
+		line, 
+		rect, 
+		circle {
+			fill: white;
+		}
+	}
+
+	h3 {
+		text-transform: uppercase;
+		text-align: center;
+		font-size: 19px;
+	}
+
+	h3.tall {
+		position: relative;
+		top: -20px;
+	}
+}
+
+.service:hover {
+	background-color: white;
+	color: $blue;
+	transition: all 1.3s;
+
+	svg {
+
+		path,
+		line, 
+		rect, 
+		circle {
+			fill: $blue;
+		}
+	}
+}
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Contact
+\*----------------------------------------------------------------------------*/
+
+#map {
+	position: relative;
+	top: 100px;
+	height: 300px;
+	width: 920px;
+	display: block;
+	margin: auto;
+}
+
+.row.contact {
+	width: 820px;
+	position: relative;
+	top: 120px;
+	padding-bottom: 0;
+
+	.col--2 {
+
+		img {
+			margin-right: 15px;
+			width: 80px;
+		}
+
+		img, 
+		div {
+			vertical-align: middle;
+			display: inline-block;
+		}
+
+		p {
+			font-weight: lighter;
+			font-size: 15px;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Contact
+\*----------------------------------------------------------------------------*/
+
+.row.footer {
+	padding: 0;
+	padding-top: 80px;
+	margin: 0 auto;
+	width: 920px;
+
+	.col--2 {
+		border: 0;
+
+		a {
+			color: white;
+			font-weight: lighter;
+			font-size: 17px;
+		}
+	}
+}
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*\
+  #Contact
+\*----------------------------------------------------------------------------*/
+
+.nuva {
+	background-color: #3c3c3c;
+	width: 100%;
+
+	img {
+		height: 30px;
+		width: 30px;
+		display: block;
+		margin: auto;
+		padding: 10px 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
